@@ -1,0 +1,6 @@
+Developed end-to-end data pipelines to ingest, process, and transform large volumes of data from diverse sources,
+
+ensuring data accuracy and consistency.
+
+Myself Pranjal Rai, I'm a product engineer @Qinecsa SOlutions. I love coding and designing.This content is supposed to be added in the dummy text file
+Some more content....
