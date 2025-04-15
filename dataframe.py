@@ -50,5 +50,9 @@ def main():
     ######VERY IMP: ILOC USES EXCLUSIVE SLICING FOR THE END_INDEX, i.e  end index is exluded, very much like array/string slicing
     print(df.iloc[:,1:5])
 
+    #direct slicing
+    print(df[0:9])
+    #note: panda uses iloc by default
+
 if __name__ =="__main__":
     main()
