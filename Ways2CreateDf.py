@@ -2,9 +2,11 @@ import pandas as pd
 def main():
     #Ways to create Df!"
     ##Using csv or excel
-    df = pd.read_csv("BigMart Sales.csv")
+
+    csv_name = "BigMart Sales.csv"
+    df = pd.read_csv(csv_name)
     print(df)
-    #You can specify the sheetname in case the csv is a workbook, like this pd.read_csv("BigMart Sales.csv")
+    #You can specify the sheetname in case the csv is a workbook, like this pd.read_csv(csv_name)
 
     #Creating from a lost of rows
     data = [(101, 'Rajesh', 'IT', 75000, 'Bangalore'),
@@ -46,6 +48,38 @@ def main():
     df3 = pd.DataFrame(lst_of_dct)
 
     print(df3)
+
+    #while reading a csv we can give certain instructions based on the requirements
+    #Below example skips the mentioned number of rows to exclude in the processed data frame
+    df4 = pd.read_csv(csv_name, skiprows=1)
+
+    print(df4)
+
+    #Below example tells the compiler which row to consider for headers
+
+    df4 = pd.read_csv(csv_name, header=3)
+
+    print(df4)
+
+    #Note: We can also mention header None in order to set the headers to just column indexes
+
+    #We can also give the columns names if you want to give headers by yourself, but then it will consider headers(is present) 
+    # as first row, so make sure to skip 1st rows if headers are already present
+     
+    df5 = pd.read_csv("Emp data.csv", skiprows= 1, names=["Emp Id", "Emp Name","Emp Dept", "Emp Salry" ])
+
+
+    #To Read limited rows of the csv
+    df5 = pd.read_csv("Emp data.csv", nrows =2)
+
+
+    #To replace any value with NaN
+
+    df5 = pd.read_csv("Emp data.csv", na_values=["Not Available", "na"])
+
+    #To replace value from specific columns
+    df5 = pd.read_csv("Emp data.csv", na_values=["Not Available", "na"])
+    
 
 if __name__=="__main__":
     main()
