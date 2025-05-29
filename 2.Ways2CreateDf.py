@@ -1,4 +1,5 @@
 import pandas as pd
+
 def main():
     #Ways to create Df!"
     ##Using csv or excel
@@ -30,7 +31,7 @@ def main():
     #creating df from a dictionary or list of dict
 
     data1 = {
-        "id":[101, 102, 103],
+        "id":[101, 102, 103],  
         "emp_name": ["Anil", "Suresh", "Panil"],
         "dept":['IT', 'Sales', 'HR']
     }
@@ -78,8 +79,26 @@ def main():
     df5 = pd.read_csv("Emp data.csv", na_values=["Not Available", "na"])
 
     #To replace value from specific columns
-    df5 = pd.read_csv("Emp data.csv", na_values=["Not Available", "na"])
-    
+    df5 = pd.read_csv("Emp data.csv", na_values={
+       "Salary (INR)": ["Not Available", "na", "HR"]})
+
+
+    #Using converters while reading data frames to  modfiy cell values
+    df5 = pd.read_csv("Emp data.csv", converters={
+        "Department": modify_dept_name
+    })
+
+    #Parse dates is used to change the type of the specific column to date type
+    df5 = pd.read_csv("Emp data.csv", parse_dates=["Joining date"])
+    print(df5)
+
+def modify_dept_name(cell):
+    if cell =="IT":
+        return "Information Technology"
+    elif cell=="HR":
+        return "Human Resource"
+    elif cell=="QA":
+        return "Quality Assurance"
 
 if __name__=="__main__":
     main()
