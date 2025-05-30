@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 def p(df):
     print(df)
@@ -73,7 +74,7 @@ def main():
     ('2017-01-01', 32.0, 6.0, 'Rain'),
     ('2017-01-04', None, 9.0, 'Sunny'),
     ('2017-01-05', 28.0, None, 'Snow'),
-    ('2017-01-07', 32.0, None, 'Rain'),
+    ('2017-01-07', 32.0, None, 'NA'),
     ('2017-01-10', 34.0, 8.0, 'Cloudy'),
     ('2017-01-11', 40.0, 12.0, 'Sunny')
     ]
@@ -89,7 +90,37 @@ def main():
     ind = pd.DatetimeIndex(dt)
     df11 = df10.reindex(ind)
     p(df11)
+    
 
+    
+
+    #Replace - Replace method in python can be used to replace certain values in python's df
+    df12= df10.replace('Rain', 'Rainy')
+    #If we are using replace function like this, then we are providing targer value and replacement value
+    #But this will target the cells having the value 'Rain' in any column. Instead wecan provide a dict parma (with key value pairs, key as the column name, value as the target value)
+    #along with a replacement value, see below
+
+    df13 = df10.replace({
+        'Temp':np.nan,
+        'Windspeed': np.nan,
+        'Event':'NA'
+    }, 'Not Avl')
+    p(df13)
+    #We can also use regex as target values for replacement, but we need to set regex="True", see below commented example
+    # df14 = df10.replace({
+    #     'Event':'Regular Exp'
+    # }, 'Not Avl')
+    
+    df14 = pd.DataFrame({
+    'score': ['exceptional', 'average', 'good', 'poor', 'average', 'exceptional'],
+    'student': ['rob', 'maya', 'parthiv', 'tom', 'julian', 'erica']
+    })
+
+    #We can use a lists as parameters as well in replace method. 1st list would contain the target values and second the replacement ones
+    df15 = df14.replace(['poor', 'average','good', 'exceptional'], [1,2,3,4])
+    p(df15)
+
+      
 
 if __name__ =="__main__":
     main()
