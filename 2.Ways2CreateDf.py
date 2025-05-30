@@ -6,8 +6,12 @@ def main():
 
     csv_name = "BigMart Sales.csv"
     df = pd.read_csv(csv_name)
-    print(df)
+    # print(df)
     #You can specify the sheetname in case the csv is a workbook, like this pd.read_csv(csv_name)
+
+    #You can use the 'parse_dates' attr to convert the type of the date column to date, which are by default considered as strings
+    df =pd.read_csv(csv_name, parse_dates=['Outlet_Establishment_Year'])
+    print(df)
 
     #Creating from a lost of rows
     data = [(101, 'Rajesh', 'IT', 75000, 'Bangalore'),
